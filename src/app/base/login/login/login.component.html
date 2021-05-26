@@ -1,0 +1,56 @@
+<div >
+  
+  <form class="modal-content"  #loginForm="ngForm" (ngSubmit)="login(loginForm.valid)">
+    <div class="imgcontainer">
+      <img src="{{appConstant.img}}" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email"  name="email" #email='ngModel'  [ngClass]="{
+        error: email.errors && (email.dirty || loginForm.submitted)
+      }"
+      pattern="[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.[a-zA-Z]{2,8}$"
+      [(ngModel)]="model.email"
+      autocomplete="off"
+      required>
+      <div class="text text-danger">
+        <p  *ngIf="!model.email && loginForm.submitted">
+          Email is required !
+        </p>
+        <p *ngIf="model.email && email?.errors?.pattern">
+          Invalid Email!
+        </p>
+      </div>
+      <label for="psw"><b>Password</b></label>
+      <input name="password"
+      autocomplete="off"
+      #password="ngModel"
+      [(ngModel)]="model.password"
+      type="password"
+      placeholder="Password"
+      class="form-control"
+      [ngClass]="{
+        error:
+          password.errors && (password.dirty || loginForm.submitted)
+      }"
+      required
+      minlength="6"
+      maxlength="30">
+        
+      <div class="text text-danger">
+          <p  *ngIf="!model.password && loginForm.submitted">
+              Password is required !
+            </p>
+            <p *ngIf="password.errors?.minlength">
+                password must be 6 characters long.
+            </p>
+        </div>
+        <button type="submit"> 
+          Login</button>
+    </div>
+  </form>
+</div>
+
+
+

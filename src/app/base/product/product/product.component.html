@@ -1,0 +1,41 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-beat">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div class="container">
+    <h3 align="center" class="border rounded mt-3 p-3">
+        Product List
+    </h3>
+    <div class="mb-3 d-flex justify-content-between">
+        <div class="">
+            <input type="text" name="search" class="form-control" placeholder="Search by title" #find
+                (keyup)="searchData(find.value)" id="">
+        </div>
+        <div align="right">
+            <button class="btn btn-primary" [routerLink]="['add']"> Add</button>
+        </div>
+    </div>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>SNo.</th>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of productList; let i = index;">
+                <td>{{i+1}}</td>
+                <td class="img">
+                    <img src="{{data?.image}}" alt="">
+                </td>
+                <td>{{data?.title}}</td>
+                <td>{{data?.price}}</td>
+                <td>{{data?.description}}</td>
+                <td>{{data?.category}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
